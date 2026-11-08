@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Support Daily Gift</title>
+<style>
+:root{
+  --wood:#b9743a;--wood-d:#8a5224;--wood-l:#d9954f;--cream:#fff4d6;--ink:#5a3417;
+  --green:#7fd24a;--green-d:#4a9a24;--orange:#ffa31a;--orange-d:#d97400;--teal:#2bb5c9;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%}
+body{
+  font-family:"Arial Rounded MT Bold","Baloo 2","Nunito","Trebuchet MS",system-ui,sans-serif;font-weight:800;color:var(--ink);
+  background:linear-gradient(180deg,#5cc8f0 0%,#a6e4ff 45%,#e8f8ff 70%);
+  overflow:hidden;display:flex;justify-content:center;
+}
+/* sky + village scenery */
+.rays{position:absolute;top:-40vh;left:50%;width:160vmax;height:160vmax;margin-left:-80vmax;opacity:.35;
+  background:repeating-conic-gradient(from 0deg,#fff 0 8deg,transparent 8deg 20deg);animation:spin 80s linear infinite;
+  -webkit-mask:radial-gradient(circle,#000 0,transparent 55%);mask:radial-gradient(circle,#000 0,transparent 55%)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cloud{position:absolute;background:#fff;border-radius:60px;opacity:.95;animation:drift linear infinite}
+.cloud:before,.cloud:after{content:"";position:absolute;background:#fff;border-radius:50%}
+.cloud:before{width:50%;height:150%;left:14%;top:-70%}
+.cloud:after{width:38%;height:120%;right:12%;top:-45%}
+@keyframes drift{from{transform:translateX(-30vw)}to{transform:translateX(130vw)}}
+.village{position:absolute;left:0;right:0;bottom:calc(26vh - 20px);height:150px;display:flex;justify-content:center;align-items:flex-end;gap:6px;opacity:.95}
+.ground{position:absolute;bottom:0;left:0;right:0;height:26vh;
+  background:radial-gradient(130% 90% at 25% 100%,#8fe05a 58%,transparent 59%),radial-gradient(130% 90% at 80% 100%,#78cf46 58%,transparent 59%),#6bc13a}
+.ground:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 12% 40%,#ffd84d 0 4px,transparent 5px),radial-gradient(circle at 88% 55%,#ff8fb3 0 4px,transparent 5px),radial-gradient(circle at 70% 30%,#fff 0 4px,transparent 5px)}
+
+main{position:relative;z-index:2;width:100%;max-width:460px;min-height:100vh;padding:16px 14px 6vh;text-align:center;display:flex;flex-direction:column;align-items:center}
+/* wooden sign */
+.sign{position:relative;margin-top:6px;padding:12px 28px 14px;border-radius:18px;
+  background:linear-gradient(180deg,var(--wood-l),var(--wood));border:4px solid var(--wood-d);
+  box-shadow:0 6px 0 var(--wood-d),0 12px 18px rgba(0,0,0,.2)}
+.sign:before,.sign:after{content:"";position:absolute;top:8px;width:9px;height:9px;border-radius:50%;background:#5a3417;box-shadow:inset 0 2px 0 rgba(255,255,255,.3)}
+.sign:before{left:9px}.sign:after{right:9px}
+.sign small{display:block;font-size:13px;letter-spacing:.18em;color:#ffe9b8;text-transform:uppercase}
+.sign h1{margin:2px 0 0;font-size:34px;line-height:1.05;color:#fff;-webkit-text-stroke:0;
+  text-shadow:0 3px 0 var(--wood-d),2px 0 0 var(--wood-d),-2px 0 0 var(--wood-d),0 -2px 0 var(--wood-d)}
+.msg{margin:16px 0 0;padding:8px 20px;background:var(--cream);border-radius:999px;border:3px solid #f0cf85;font-size:17px;box-shadow:0 4px 0 #e0b95f}
+
+/* boxes */
+.row{display:flex;gap:10px;justify-content:center;align-items:flex-end;margin-top:auto;padding-top:26px;min-height:270px}
+.box{position:relative;flex:0 0 auto;width:min(28vw,120px);height:min(29vw,126px);border:0;background:none;padding:0;cursor:pointer;outline:none;
+  animation:bob 2s ease-in-out infinite;transition:opacity .5s,transform .5s,filter .5s}
+.box:nth-child(2){animation-delay:-.65s}.box:nth-child(3){animation-delay:-1.3s}
+.box:focus-visible{outline:4px solid var(--orange);outline-offset:6px;border-radius:14px}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.crate{position:absolute;left:0;right:0;bottom:0;height:78%;border-radius:10px;border:4px solid var(--wood-d);
+  background:
+    linear-gradient(90deg,transparent 46%,var(--wood-d) 46% 54%,transparent 54%),
+    repeating-linear-gradient(180deg,var(--wood-l) 0 22%,var(--wood) 22% 26%);
+  box-shadow:0 6px 0 var(--wood-d),0 12px 12px rgba(0,0,0,.2)}
+.crate:before{content:"";position:absolute;left:-4px;right:-4px;top:38%;height:14%;background:var(--teal);border-top:3px solid #fff8;border-bottom:3px solid #17808f}
+.q{position:absolute;left:50%;top:50%;transform:translate(-50%,-55%);z-index:2;width:46px;height:46px;border-radius:50%;
+  background:var(--orange);border:3px solid #fff;color:#fff;font-size:30px;line-height:40px;text-shadow:0 2px 0 var(--orange-d);box-shadow:0 4px 0 var(--orange-d)}
+.lid{position:absolute;left:-6px;right:-6px;bottom:70%;height:26%;border-radius:10px;border:4px solid var(--wood-d);z-index:3;
+  background:linear-gradient(180deg,var(--wood-l),var(--wood));transform-origin:left bottom;
+  transition:transform .6s cubic-bezier(.3,1.6,.5,1),opacity .5s .2s}
+.lid:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:18%;margin-left:-9%;background:var(--teal)}
+.prize{position:absolute;left:50%;bottom:34%;width:100%;margin-left:-50%;z-index:1;opacity:0;transform:translateY(20px) scale(.3);
+  transition:transform .8s cubic-bezier(.2,1.7,.4,1) .25s,opacity .3s .25s;pointer-events:none}
+.bolt{width:70%;max-width:84px;display:block;margin:0 auto;filter:drop-shadow(0 4px 0 rgba(0,0,0,.2))}
+.amt{display:block;font-size:30px;color:#fff;line-height:1;margin-top:-4px;
+  text-shadow:0 3px 0 var(--green-d),2px 0 0 var(--green-d),-2px 0 0 var(--green-d),0 -2px 0 var(--green-d)}
+.amt small{font-size:13px;letter-spacing:.12em}
+.box.open .lid{transform:translate(-30px,-60px) rotate(-60deg);opacity:0}
+.box.open .q{display:none}
+.box.open .prize{opacity:1;transform:translateY(-92px) scale(1.15)}
+.box.open{animation:none}
+.box.shake{animation:shake .5s linear infinite}
+@keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg) scale(1.04)}75%{transform:rotate(8deg) scale(1.06)}}
+.box.mine{transform:scale(1.14);z-index:3}
+.box.other{opacity:.55;filter:saturate(.6);transform:scale(.92)}
+.box.other .prize{filter:grayscale(.3)}
+.row.locked .box{pointer-events:none}
+
+.glow{position:absolute;left:50%;top:40%;width:230px;height:230px;margin:-115px;border-radius:50%;opacity:0;pointer-events:none;
+  background:radial-gradient(circle,#fff7bf,rgba(255,226,100,.55) 45%,transparent 70%);transition:opacity .5s}
+.mine .glow{opacity:1}
+
+.btn{display:none;margin:22px auto 10px;padding:15px 52px;border:0;border-radius:18px;font:inherit;font-size:24px;color:#fff;cursor:pointer;text-decoration:none;
+  background:linear-gradient(180deg,#b6f26a,var(--green) 45%,#5bb82d);border:3px solid #fff;box-shadow:0 7px 0 var(--green-d),0 14px 18px rgba(0,0,0,.2);
+  text-shadow:0 2px 0 var(--green-d),0 -1px 0 var(--green-d)}
+.btn:active{transform:translateY(5px);box-shadow:0 2px 0 var(--green-d)}
+.btn.show{display:inline-block;animation:pop .5s cubic-bezier(.2,1.8,.4,1)}
+@keyframes pop{from{transform:scale(.4);opacity:0}}
+.done{display:none;margin-top:18px;padding:12px 18px;background:var(--cream);border:3px solid #f0cf85;border-radius:16px;font-size:17px}
+.dust{position:fixed;z-index:5;pointer-events:none;width:12px;height:12px;border-radius:3px;animation:fly 1.3s ease-out forwards}
+@keyframes fly{to{transform:translate(var(--dx),var(--dy)) rotate(var(--r));opacity:0}}
+.mute{position:fixed;top:12px;right:12px;z-index:6;width:44px;height:44px;border-radius:50%;border:3px solid var(--wood-d);background:var(--wood-l);font-size:20px;cursor:pointer;box-shadow:0 4px 0 var(--wood-d)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="rays"></div>
+<div class="cloud" style="width:130px;height:34px;top:7%;animation-duration:70s"></div>
+<div class="cloud" style="width:90px;height:26px;top:20%;animation-duration:95s;animation-delay:-40s"></div>
+
+<!-- cozy village skyline -->
+<div class="village" aria-hidden="true">
+  <svg viewBox="0 0 460 150" width="100%" style="max-width:520px" preserveAspectRatio="xMidYMax meet">
+    <g stroke="#7a4a22" stroke-width="3" stroke-linejoin="round">
+      <rect x="20" y="70" width="80" height="70" fill="#ffe3b0"/><path d="M10 74 60 28l50 46z" fill="#e8573d"/>
+      <rect x="48" y="98" width="24" height="42" fill="#a8602d"/><rect x="26" y="84" width="16" height="16" fill="#8fdcff"/>
+      <rect x="130" y="40" width="70" height="100" fill="#fff0cf"/><path d="M122 46 165 8l43 38z" fill="#2bb5c9"/>
+      <rect x="152" y="96" width="26" height="44" fill="#a8602d"/><rect x="140" y="58" width="18" height="18" fill="#8fdcff"/><rect x="172" y="58" width="18" height="18" fill="#8fdcff"/>
+      <rect x="230" y="80" width="90" height="60" fill="#ffd9a0"/><path d="M220 84 275 42l55 42z" fill="#f5a623"/>
+      <rect x="262" y="104" width="22" height="36" fill="#a8602d"/><rect x="238" y="94" width="16" height="16" fill="#8fdcff"/>
+      <rect x="350" y="60" width="80" height="80" fill="#ffe9bd"/><path d="M340 64 390 18l50 46z" fill="#9b6bd6"/>
+      <rect x="378" y="98" width="24" height="42" fill="#a8602d"/><rect x="358" y="78" width="16" height="16" fill="#8fdcff"/>
+    </g>
+    <g fill="#3f9e2a" stroke="#2c7a1c" stroke-width="3"><circle cx="112" cy="116" r="20"/><circle cx="335" cy="112" r="22"/></g>
+  </svg>
+</div>
+<div class="ground"></div>
+<button class="mute" id="mute" aria-label="Toggle sound">🔊</button>
+
+<main>
+  <div class="sign"><small>Support</small><h1>Daily Gift</h1></div>
+  <p class="msg" id="msg">Pick a box to open!</p>
+
+  <div class="row" id="row">
+    <button class="box" aria-label="Gift box 1"><div class="glow"></div><div class="crate"></div><div class="q">?</div><div class="lid"></div>
+      <div class="prize"><svg class="bolt" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#9be64f" stroke="#fff" stroke-width="6"/><path d="M57 12 30 54h18l-6 34 28-44H52z" fill="#fff36b" stroke="#c88a00" stroke-width="3" stroke-linejoin="round"/></svg><span class="amt">20<small> ENERGY</small></span></div></button>
+    <button class="box" aria-label="Gift box 2"><div class="glow"></div><div class="crate"></div><div class="q">?</div><div class="lid"></div>
+      <div class="prize"><svg class="bolt" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#9be64f" stroke="#fff" stroke-width="6"/><path d="M57 12 30 54h18l-6 34 28-44H52z" fill="#fff36b" stroke="#c88a00" stroke-width="3" stroke-linejoin="round"/></svg><span class="amt">20<small> ENERGY</small></span></div></button>
+    <button class="box" aria-label="Gift box 3"><div class="glow"></div><div class="crate"></div><div class="q">?</div><div class="lid"></div>
+      <div class="prize"><svg class="bolt" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#9be64f" stroke="#fff" stroke-width="6"/><path d="M57 12 30 54h18l-6 34 28-44H52z" fill="#fff36b" stroke="#c88a00" stroke-width="3" stroke-linejoin="round"/></svg><span class="amt">20<small> ENERGY</small></span></div></button>
+  </div>
+
+  <a class="btn" id="collect" href="https://api.traveltowngame.net/public/rewardLinks/getLink/ZyOZngh8_EMAIL" rel="noopener">Collect</a>
+  <div class="done" id="done">Gift collected! 🏡<br>Come back tomorrow for another one.</div>
+</main>
+
+<script>
+(function(){
+  var KEY='supportDailyGift_lastCollected';
+  var today=new Date().toISOString().slice(0,10);
+  var row=document.getElementById('row'),boxes=[].slice.call(row.children),
+      msg=document.getElementById('msg'),btn=document.getElementById('collect'),
+      done=document.getElementById('done'),muteBtn=document.getElementById('mute');
+  var muted=false,picked=false,ac;
+
+  function store(get,v){try{return get?localStorage.getItem(KEY):localStorage.setItem(KEY,v)}catch(e){return null}}
+  function tone(f,t,d,type,v){
+    if(muted)return;
+    try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();
+      var o=ac.createOscillator(),g=ac.createGain(),s=ac.currentTime+t;
+      o.type=type||'sine';o.frequency.value=f;
+      g.gain.setValueAtTime(0,s);g.gain.linearRampToValueAtTime(v||.15,s+.02);g.gain.exponentialRampToValueAtTime(.001,s+d);
+      o.connect(g);g.connect(ac.destination);o.start(s);o.stop(s+d+.05);}catch(e){}
+  }
+  function rattle(){for(var i=0;i<5;i++)tone(160+Math.random()*60,i*.1,.08,'square',.06)}
+  function chime(){[523,659,784,1047,1319].forEach(function(f,i){tone(f,i*.09,.5,'triangle',.18)})}
+
+  function confetti(el){
+    var c=['#ffa31a','#7fd24a','#2bb5c9','#ff6b8a','#ffe14d'],r=el.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/3;
+    for(var i=0;i<44;i++){
+      var d=document.createElement('div');d.className='dust';d.style.left=cx+'px';d.style.top=cy+'px';d.style.background=c[i%c.length];
+      d.style.setProperty('--dx',(Math.random()*360-180)+'px');d.style.setProperty('--dy',(Math.random()*-300-20)+'px');d.style.setProperty('--r',(Math.random()*720)+'deg');
+      document.body.appendChild(d);setTimeout(function(e){e.remove()}.bind(null,d),1400);
+    }
+  }
+
+  if(store(true)===today){
+    row.style.display='none';msg.textContent='Already opened today!';done.style.display='block';return;
+  }
+
+  boxes.forEach(function(b){
+    b.addEventListener('click',function(){
+      if(picked)return;picked=true;row.classList.add('locked');
+      b.classList.add('shake');msg.textContent='Opening…';rattle();
+      setTimeout(function(){
+        b.classList.remove('shake');b.classList.add('open','mine');confetti(b);chime();
+        msg.textContent='You got 20 Energy!';
+        boxes.forEach(function(o){if(o!==b)o.classList.add('other')});
+        setTimeout(function(){btn.classList.add('show')},900);
+      },1000);
+    });
+  });
+  btn.addEventListener('click',function(){store(false,today)});
+  muteBtn.addEventListener('click',function(){muted=!muted;muteBtn.textContent=muted?'🔇':'🔊'});
+})();
+</script>
+</body>
+</html>
